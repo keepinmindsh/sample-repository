@@ -1,2 +1,4 @@
-package bong.lines.sample.model;public class Member {
+package bong.lines.sample.model;
+
+public class Member {
 }
