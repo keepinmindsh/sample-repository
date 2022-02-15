@@ -1,11 +1,14 @@
 package bong.sample;
 
+import bong.sample.code.RoleType;
 import bong.sample.model.Member;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public class SampleForJPA {
@@ -23,16 +26,20 @@ public class SampleForJPA {
         try {
 
             Member member = new Member();
-            member.setId(1L);
-            member.setUserName("Bongs");
+            member.setAge(100);
+            member.setCreateDate(new Date());
+            member.setRegisterDate(new Date());
+            member.setRoleType(RoleType.ROLE_TYPE);
+            member.setDescription("safasdfasdfasdfasdfasdfasdfsadfasdf");
+            member.setUserName("Bong");
 
             entityManager.persist(member);
 
-            Member findMember = entityManager.find(Member.class, 1L);
-            findMember.setUserName("Bongs");
+            Thread.sleep(1000);
 
             entityTransaction.commit();
         }catch (Exception exception){
+            exception.printStackTrace();
             entityTransaction.rollback();
         }finally {
             entityManager.close();
